@@ -1,18 +1,10 @@
 import { test, expect } from '@playwright/test';
+import { axiosInstance } from '../lib/api';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+let data = { base1: 10, base2: 20, height: 5 };
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+test(`Calculate area with side 1 ${data.base1}, side 2 ${data.base2} and height ${data.height}`, async () => {
+    const response = await axiosInstance.post('/calculate-area', data);
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+    expect(response.status).toBe(200);
 });
