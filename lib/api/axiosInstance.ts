@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import playwrightConfig from '../playwright.config';
+import playwrightConfig from '../../playwright.config';
 import { randomUUID } from 'crypto';
 
 if (!playwrightConfig?.use?.baseURL) {
