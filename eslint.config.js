@@ -29,6 +29,7 @@ export default [
                     message: 'Oh no, we have .only on our tests 😱',
                 },
             ],
+            '@typescript-eslint/no-explicit-any': 'warn',
         },
     },
 ];
