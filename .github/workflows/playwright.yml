@@ -44,8 +44,7 @@ jobs:
 
       - name: Run tests
         run: |
-          docker run -d --name playwright playwright_image
-          docker exec -i playwright npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          docker run -i --entrypoint="npx" --name playwright playwright_image playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: Copy tests report from Docker
         if: always()
@@ -58,6 +57,10 @@ jobs:
           name: blob-report-${{ matrix.shardIndex }}
           path: blob-report
           retention-days: 1
+
+      - name: Container Cleanup
+        continue-on-error: true
+        run: docker rm playwright --force
 
   merge_reports:
     needs: test
