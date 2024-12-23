@@ -9,7 +9,8 @@
     "prettier": "prettier . --check",
     "prettier:fix": "prettier . --write",
     "prepare": "husky install",
-    "test": "playwright test"
+    "test": "playwright test",
+    "report": "playwright show-report"
   },
   "keywords": [],
   "author": "",
